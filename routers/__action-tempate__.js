@@ -8,9 +8,7 @@
     })
     .catch ((error) => {
       // respond...
-      respondWithError (
-        500,
-        '',
-      )
+      clog (error)
+      respondWithError (500) (ri, ro)
     })
 }

@@ -45,7 +45,7 @@ router.route ('/')
         .catch ((error) => {
           // respond...
           clog (error)
-          respondWithError (500)
+          respondWithError (500) (ri, ro)
         })
     },
   ])
