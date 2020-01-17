@@ -123,13 +123,25 @@ router.route ('/:project_id/actions')
   .post ([
     requireRequestHasBody (),
     // put `project_id` in action's `ri.body`
-    (ri, ro) => {
+    (ri, ro, next) => {
       ri.body.project_id = ri.params.project_id
       next ()
     },
     validateAction (),
-    respondWithError (501),
-    (ri, ro) => {},
+    (ri, ro, next) => {
+      database['actions'].insert (ri.body)
+        .then ((value) => {
+          // respond...
+          ro
+            .status (201)
+            .json (value)
+        })
+        .catch ((error) => {
+          // respond...
+          clog (error)
+          respondWithError (500) (ri, ro)
+        })
+    },
   ])
 
 router.route ('*')
