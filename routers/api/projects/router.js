@@ -57,6 +57,7 @@ router.route ('/')
 router.route ('/:project_id')
   .all ([
     validateProjectId (database.get),
+    // -- on success: adds ri.locals.project
   ])
   .get ([
     respondWithError (501),
@@ -76,6 +77,7 @@ router.route ('/:project_id')
 router.route ('/:project_id/actions')
   .all ([
     validateProjectId (database.get),
+    // -- on success: adds ri.locals.project
   ])
   .get ([
     respondWithError (501),

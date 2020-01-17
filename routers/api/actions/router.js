@@ -42,6 +42,7 @@ router.route ('/')
 router.route ('/:action_id')
   .all ([
     validateActionId (database.get),
+    // -- on success: adds ri.locals.action
   ])
   .get ([
     respondWithError (501),
