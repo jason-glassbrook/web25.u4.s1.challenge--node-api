@@ -33,8 +33,20 @@ const database = require ('./database')
 
 router.route ('/')
   .get ([
-    respondWithError (501),
-    (ri, ro) => {},
+    (ri, ro, next) => {
+      database.get ()
+        .then ((value) => {
+          // respond...
+          ro
+            .status (200)
+            .json (value)
+        })
+        .catch ((error) => {
+          // be lazy...
+          next ()
+        })
+    },
+    respondWithError (500),
   ])
   .post ([
     requireRequestHasBody (),
