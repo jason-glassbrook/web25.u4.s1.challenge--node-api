@@ -16,11 +16,6 @@ const {
   respondWithError,
 } = require ('./middleware')
 
-/// routers ///
-const routers = {
-  api : require ('./api/router'),
-}
-
 /***************************************
   setup server
 ***************************************/
@@ -33,8 +28,11 @@ server.use ([
   morgan ('dev'),
 ])
 
-/// routers ///
-server.use ('/api', routers.api)
+/// sub-routers ///
+const subs = [ 'api' ]
+subs.forEach ((sub) => {
+  server.use (`/${sub}`, require (`./${sub}`).router)
+})
 
 /// requests ///
 server.route ('/')
