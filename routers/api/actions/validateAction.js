@@ -14,10 +14,20 @@ const validateAction = () => requireRequestConforms (
       'project_id' : _.isInteger,
       'description' : _.isString,
       'notes' : _.isString,
-      'completed' : _.anyPass ([ _.isBoolean, _.isUndefined ])
+      'completed' : _.anyPass ([ _.isBoolean, _.isUndefined ]),
     }
   },
-  ' -- { body : { project_id : integer, description : string, notes : string, completed : boolean | undefined } }',
+  '',
+  {
+    shape : {
+      'body' : {
+        'project_id' : 'integer',
+        'description' : 'string',
+        'notes' : 'string',
+        'completed' : 'boolean | undefined',
+      }
+    }
+  }
 )
 
 /**************************************/
