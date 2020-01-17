@@ -10,7 +10,7 @@ const { not, hasPaths } = require ('../tools')
 const respondWithError = require ('./respondWithError')
 
 /***************************************
-  definition
+  MAIN
 ***************************************/
 
 const requireRequestHas = (paths, restOfErrorMessage = '', ...rest) => (ri, ro, next) => {

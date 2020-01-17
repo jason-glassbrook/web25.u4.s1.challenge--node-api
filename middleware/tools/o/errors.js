@@ -5,7 +5,7 @@
 const { error } = require ('../')
 
 /***************************************
-  definition
+  MAIN
 ***************************************/
 
 const buildRestOfError = (request, restOfError) => ({

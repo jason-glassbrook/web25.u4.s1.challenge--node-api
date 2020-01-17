@@ -7,7 +7,7 @@
 const { errors } = require ('./tools/o')
 
 /***************************************
-  definition
+  MAIN
 ***************************************/
 
 const respondWithError = (code, ...rest) => (ri, ro) => {

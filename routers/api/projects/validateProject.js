@@ -2,11 +2,19 @@
   validateProject
 ***********************************************************/
 
+/// tools ///
+
 const _ = require ('lodash/fp')
+
+/// middleware ///
 
 const {
   requireRequestConforms,
 } = require ('../../../middleware')
+
+/***************************************
+  MAIN
+***************************************/
 
 const validateProject = () => requireRequestConforms (
   {

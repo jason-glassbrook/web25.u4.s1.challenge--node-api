@@ -2,11 +2,19 @@
   validateAction
 ***********************************************************/
 
+/// tools ///
+
 const _ = require ('lodash/fp')
+
+/// middleware ///
 
 const {
   requireRequestConforms,
 } = require ('../../../middleware')
+
+/***************************************
+  MAIN
+***************************************/
 
 const validateAction = () => requireRequestConforms (
   {

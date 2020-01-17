@@ -7,7 +7,7 @@
 const _ = require ('lodash/fp')
 
 /***************************************
-  definition
+  MAIN
 ***************************************/
 
 const hasPaths = (paths) => /* (collection) => */ (

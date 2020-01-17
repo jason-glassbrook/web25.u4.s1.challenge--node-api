@@ -5,7 +5,7 @@
 const kvPairs = require ('./kvPairs')
 
 /***************************************
-  definition
+  MAIN
 ***************************************/
 
 const message = (text, rest = {}) => kvPairs (

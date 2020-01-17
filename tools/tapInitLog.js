@@ -6,7 +6,7 @@ const _ = require ('lodash/fp')
 const tapLog = require ('./tapLog')
 
 /***************************************
-  definition
+  MAIN
 ***************************************/
 
 const tapInitLog = (fun) =>

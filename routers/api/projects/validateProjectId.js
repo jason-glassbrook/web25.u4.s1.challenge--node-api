@@ -2,13 +2,21 @@
   validateProjectId
 ***********************************************************/
 
+/// tools ///
+
+// const { clog } = require ('../../../tools')
+
+/// middleware ///
+
 const {
   respondWithError,
   requireRequestConforms,
 } = require ('../../../middleware')
 
-const validateProjectId = () => (ri, ro, next) => {
-  next ()
+/***************************************
+  MAIN
+***************************************/
+
 }
 
 /**************************************/

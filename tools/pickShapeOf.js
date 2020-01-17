@@ -6,7 +6,7 @@ const _ = require ('lodash/fp')
 const pickPaths = require ('./pickPaths')
 
 /***************************************
-  definition
+  MAIN
 ***************************************/
 
 const pickShapeOf = /* (shape) => (object) => */ (

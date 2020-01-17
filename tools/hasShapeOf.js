@@ -6,7 +6,7 @@ const _ = require ('lodash/fp')
 const hasPaths = require ('./hasPaths')
 
 /***************************************
-  definition
+  MAIN
 ***************************************/
 
 const hasShapeOf = /* (shape) => (object) => */ (

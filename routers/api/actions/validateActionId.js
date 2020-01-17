@@ -2,13 +2,21 @@
   validateActionId
 ***********************************************************/
 
+/// tools ///
+
+// const { clog } = require ('../../../tools')
+
+/// middleware ///
+
 const {
   respondWithError,
   requireRequestConforms,
 } = require ('../../../middleware')
 
-const validateActionId = () => (ri, ro, next) => {
-  next ()
+/***************************************
+  MAIN
+***************************************/
+
 }
 
 /**************************************/

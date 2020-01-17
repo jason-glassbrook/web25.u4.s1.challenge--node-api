@@ -5,7 +5,7 @@
 const { message } = require ('../')
 
 /***************************************
-  definition
+  MAIN
 ***************************************/
 
 const messages = {

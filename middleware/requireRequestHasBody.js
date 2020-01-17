@@ -8,7 +8,7 @@
 const requireRequestHas = require ('./requireRequestHas')
 
 /***************************************
-  definition
+  MAIN
 ***************************************/
 
 const requireRequestHasBody = (...rest) => (

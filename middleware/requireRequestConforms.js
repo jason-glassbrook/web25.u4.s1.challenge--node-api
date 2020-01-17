@@ -10,7 +10,7 @@ const { not } = require ('../tools')
 const respondWithError = require ('./respondWithError')
 
 /***************************************
-  definition
+  MAIN
 ***************************************/
 
 function nestedConforms (object, source) {

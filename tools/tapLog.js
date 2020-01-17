@@ -6,7 +6,7 @@ const _ = require ('lodash/fp')
 const clog = require ('./clog')
 
 /***************************************
-  definition
+  MAIN
 ***************************************/
 
 const tapLog = (message) =>

@@ -10,7 +10,7 @@ const { not } = require ('../tools')
 const respondWithError = require ('./respondWithError')
 
 /***************************************
-  definition
+  MAIN
 ***************************************/
 
 const requireRequestMatchesWith = (shape, customizer, restOfErrorMessage = '', restOfError = {}) => (ri, ro, next) => {
