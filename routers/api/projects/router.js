@@ -3,8 +3,22 @@
 ***********************************************************/
 
 /// tools ///
+
 const express = require ('express')
-const { respondWithError } = require ('../../../middleware')
+
+/// middleware ///
+
+const {
+  respondWithError,
+  requireRequestHasBody,
+} = require ('../../../middleware')
+
+const validateProjectId = require ('./validateProjectId')
+const validateProject = require ('./validateProject')
+
+const {
+  validateAction,
+} = require ('../actions')
 
 /***************************************
   setup router
