@@ -55,8 +55,20 @@ router.route ('/')
   .post ([
     requireRequestHasBody (),
     validateProject (),
-    respondWithError (501),
-    (ri, ro) => {},
+    (ri, ro, next) => {
+      database['projects'].insert (ri.body)
+        .then ((value) => {
+          // respond...
+          ro
+            .status (201)
+            .json (value)
+        })
+        .catch ((error) => {
+          // respond...
+          clog (error)
+          respondWithError (500) (ri, ro)
+        })
+    },
   ])
 
 router.route ('/:project_id')
