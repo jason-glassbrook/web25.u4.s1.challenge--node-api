@@ -2,4 +2,4 @@
   ~/actions - database
 ***********************************************************/
 
-module.exports = require ('../../data/helpers/actionModel')
+module.exports = require ('../../../data/helpers/actionModel')

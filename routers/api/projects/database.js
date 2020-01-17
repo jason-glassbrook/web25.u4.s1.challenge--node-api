@@ -2,4 +2,4 @@
   ~/projects - database
 ***********************************************************/
 
-module.exports = require ('../../data/helpers/projectModel')
+module.exports = require ('../../../data/helpers/projectModel')

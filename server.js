@@ -28,10 +28,10 @@ server.use ([
   morgan ('dev'),
 ])
 
-/// sub-routers ///
+/// routers ///
 const subs = [ 'api' ]
 subs.forEach ((sub) => {
-  server.use (`/${sub}`, require (`./${sub}`).router)
+  server.use (`/${sub}`, require (`./routers/${sub}`).router)
 })
 
 /// requests ///

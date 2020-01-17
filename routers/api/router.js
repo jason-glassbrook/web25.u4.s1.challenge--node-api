@@ -4,7 +4,7 @@
 
 /// tools ///
 const express = require ('express')
-const { respondWithError } = require ('../middleware')
+const { respondWithError } = require ('../../middleware')
 
 /***************************************
   setup router
