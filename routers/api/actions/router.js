@@ -72,8 +72,20 @@ router.route ('/:action_id')
     (ri, ro) => {},
   ])
   .delete ([
-    respondWithError (501),
-    (ri, ro) => {},
+    (ri, ro, next) => {
+      database.remove (ri.params.action_id)
+        .then ((value) => {
+          // respond...
+          ro
+            .status (200)
+            .json (ri.locals.action)
+        })
+        .catch ((error) => {
+          // respond...
+          clog (error)
+          respondWithError (500) (ri, ro)
+        })
+    },
   ])
 
 router.route ('*')
