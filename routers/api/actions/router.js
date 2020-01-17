@@ -56,8 +56,12 @@ router.route ('/:action_id')
     // -- on success: adds ri.locals.action
   ])
   .get ([
-    respondWithError (501),
-    (ri, ro) => {},
+    (ri, ro, next) => {
+      // respond...
+      ro
+        .status (200)
+        .json (ri.locals.action)
+    },
   ])
   .put ([
     requireRequestHasBody (),
