@@ -1,9 +1,13 @@
 (ri, ro, next) => {
-  database.get ()
+  database.__request__ ()
     .then ((value) => {
-      // do something
+      // respond...
+      ro
+        .status (__code__)
+        .json (__body__)
     })
     .catch ((error) => {
-      // do something
+      // be lazy...
+      next ()
     })
 }
