@@ -22,7 +22,10 @@ const validateAction = require ('./validateAction')
 ***************************************/
 
 const router = express.Router ()
-const database = require ('./database')
+const database = {
+  'actions' : require ('../actions/database'),
+  // 'projects' : require ('../projects/database'),
+}
 
 /***************************************
   requests
@@ -31,7 +34,7 @@ const database = require ('./database')
 router.route ('/')
   .get ([
     (ri, ro, next) => {
-      database.get ()
+      database['actions'].get ()
         .then ((value) => {
           // respond...
           ro
@@ -54,7 +57,7 @@ router.route ('/')
 
 router.route ('/:action_id')
   .all ([
-    validateActionId (database.get),
+    validateActionId (database['actions'].get),
     // -- on success: adds ri.locals.action
   ])
   .get ([
@@ -73,7 +76,7 @@ router.route ('/:action_id')
   ])
   .delete ([
     (ri, ro, next) => {
-      database.remove (ri.params.action_id)
+      database['actions'].remove (ri.params.action_id)
         .then ((value) => {
           // respond...
           ro
