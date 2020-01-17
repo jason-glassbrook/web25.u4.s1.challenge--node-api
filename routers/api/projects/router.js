@@ -4,6 +4,7 @@
 
 /// tools ///
 
+const { clog } = require ('../../../tools')
 const express = require ('express')
 
 /// middleware ///
@@ -43,6 +44,7 @@ router.route ('/')
         })
         .catch ((error) => {
           // respond...
+          clog (error)
           respondWithError (500)
         })
     },

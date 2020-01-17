@@ -6,7 +6,7 @@
 
 const _ = require ('lodash/fp')
 const { not } = require ('../../../tools')
-// const { clog } = require ('../../../tools')
+const { clog } = require ('../../../tools')
 
 /// middleware ///
 
@@ -42,6 +42,7 @@ const validateActionId = (getActionById) => (
         }
       })
       .catch ((error) => {
+        clog (error)
         respondWithError (500) (ri, ro)
       })
   }
