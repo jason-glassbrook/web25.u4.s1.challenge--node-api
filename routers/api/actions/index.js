@@ -2,7 +2,13 @@
   ~/actions - index
 ***********************************************************/
 
-module.exports = {
-  database : require ('./database'),
-  router : require ('./router'),
-}
+module.exports = Object.fromEntries (
+  [
+    'database',
+    'router',
+    'validateActionId',
+    'validateAction',
+  ].map (
+    (name) => [ name , require (`./${name}`) ]
+  )
+)

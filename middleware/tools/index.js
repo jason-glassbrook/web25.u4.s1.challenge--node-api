@@ -1,7 +1,11 @@
 /**************************************/
 
-module.exports = {
-  kvPairs : require ('./kvPairs'),
-  message : require ('./message'),
-  error : require ('./error'),
-}
+module.exports = Object.fromEntries (
+  [
+    'kvPairs',
+    'message',
+    'error',
+  ].map (
+    (name) => [ name , require (`./${name}`) ]
+  )
+)

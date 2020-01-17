@@ -2,6 +2,10 @@
   ~/api - index
 ***********************************************************/
 
-module.exports = {
-  router : require ('./router'),
-}
+module.exports = Object.fromEntries (
+  [
+    'router',
+  ].map (
+    (name) => [ name , require (`./${name}`) ]
+  )
+)

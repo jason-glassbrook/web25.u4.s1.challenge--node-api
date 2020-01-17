@@ -1,6 +1,10 @@
 /**************************************/
 
-module.exports = {
-  messages : require ('./messages'),
-  errors : require ('./errors'),
-}
+module.exports = Object.fromEntries (
+  [
+    'messages',
+    'errors',
+  ].map (
+    (name) => [ name , require (`./${name}`) ]
+  )
+)
