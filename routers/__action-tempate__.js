@@ -7,7 +7,10 @@
         .json (__body__)
     })
     .catch ((error) => {
-      // be lazy...
-      next ()
+      // respond...
+      respondWithError (
+        500,
+        '',
+      )
     })
 }
