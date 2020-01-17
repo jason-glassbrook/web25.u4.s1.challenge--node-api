@@ -1,7 +1,7 @@
 /***********************************************************
-  /api/actions - index
+  ~/actions - index
 ***********************************************************/
 
-modules.exports = {
+module.exports = {
   router : require ('./router'),
 }
