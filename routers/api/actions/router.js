@@ -16,6 +16,7 @@ const {
 
 const validateActionId = require ('./validateActionId')
 const validateAction = require ('./validateAction')
+const validateProjectId = require ('../projects/validateProjectId')
 
 /***************************************
   setup router
@@ -24,7 +25,7 @@ const validateAction = require ('./validateAction')
 const router = express.Router ()
 const database = {
   'actions' : require ('../actions/database'),
-  // 'projects' : require ('../projects/database'),
+  'projects' : require ('../projects/database'),
 }
 
 /***************************************
@@ -51,8 +52,21 @@ router.route ('/')
   .post ([
     requireRequestHasBody (),
     validateAction (),
-    respondWithError (501),
-    (ri, ro) => {},
+    validateProjectId (database['projects'].get),
+    (ri, ro, next) => {
+      database['actions'].insert (ri.body)
+        .then ((value) => {
+          // respond...
+          ro
+            .status (201)
+            .json (value)
+        })
+        .catch ((error) => {
+          // respond...
+          clog (error)
+          respondWithError (500) (ri, ro)
+        })
+    },
   ])
 
 router.route ('/:action_id')
