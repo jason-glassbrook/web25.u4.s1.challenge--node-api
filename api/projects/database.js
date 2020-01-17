@@ -1,8 +1,5 @@
 /***********************************************************
-  ~/actions - index
+  ~/projects - database
 ***********************************************************/
 
-module.exports = {
-  database : require ('./database'),
-  router : require ('./router'),
-}
+module.exports = require ('../../data/helpers/projectModel')

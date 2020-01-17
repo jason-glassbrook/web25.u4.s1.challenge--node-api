@@ -11,6 +11,7 @@ const { respondWithError } = require ('../../middleware')
 ***************************************/
 
 const router = express.Router ()
+const database = require ('./database')
 
 /// requests ///
 router.route ('*')
