@@ -42,11 +42,10 @@ router.route ('/')
             .json (value)
         })
         .catch ((error) => {
-          // be lazy...
-          next ()
+          // respond...
+          respondWithError (500)
         })
     },
-    respondWithError (500),
   ])
   .post ([
     requireRequestHasBody (),
