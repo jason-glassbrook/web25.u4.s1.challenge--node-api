@@ -27,7 +27,56 @@ const {
 const router = express.Router ()
 const database = require ('./database')
 
-/// requests ///
+/***************************************
+  requests
+***************************************/
+
+router.route ('/')
+  .get ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+  .post ([
+    requireRequestHasBody (),
+    validateProject (),
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+
+router.route ('/:project_id')
+  .all ([
+    validateProjectId (),
+  ])
+  .get ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+  .put ([
+    requireRequestHasBody (),
+    validateProject (),
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+  .delete ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+
+router.route ('/:project_id/actions')
+  .all ([
+    validateProjectId (),
+  ])
+  .get ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+  .post ([
+    requireRequestHasBody (),
+    validateAction (),
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+
 router.route ('*')
   .all (respondWithError (501))
 

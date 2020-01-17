@@ -23,7 +23,41 @@ const validateAction = require ('./validateAction')
 const router = express.Router ()
 const database = require ('./database')
 
-/// requests ///
+/***************************************
+  requests
+***************************************/
+
+router.route ('/')
+  .get ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+  .post ([
+    requireRequestHasBody (),
+    validateAction (),
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+
+router.route ('/:action_id')
+  .all ([
+    validateActionId (),
+  ])
+  .get ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+  .put ([
+    requireRequestHasBody (),
+    validateAction (),
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+  .delete ([
+    respondWithError (501),
+    (ri, ro) => {},
+  ])
+
 router.route ('*')
   .all (respondWithError (501))
 
