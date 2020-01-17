@@ -16,24 +16,30 @@ const {
   MAIN
 ***************************************/
 
-const validateProject = () => requireRequestConforms (
-  {
+const shape = {
+  'body' : {
+    'name' : _.isString,
+    'description' : _.isString,
+    'completed' : _.anyPass ([ _.isBoolean, _.isUndefined ]),
+  },
+}
+
+const restOfErrorMessage = ''
+
+const restOfError = {
+  shape : {
     'body' : {
-      'name' : _.isString,
-      'description' : _.isString,
-      'completed' : _.anyPass ([ _.isBoolean, _.isUndefined ]),
+      'name' : 'string',
+      'description' : 'string',
+      'completed' : 'boolean | undefined',
     }
   },
-  '',
-  {
-    shape : {
-      'body' : {
-        'name' : 'string',
-        'description' : 'string',
-        'completed' : 'boolean | undefined',
-      }
-    },
-  }
+}
+
+/*------------------------------------*/
+
+const validateProject = () => (
+  requireRequestConforms (shape, restOfErrorMessage, restOfError)
 )
 
 /**************************************/
