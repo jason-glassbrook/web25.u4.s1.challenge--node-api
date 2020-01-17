@@ -4,6 +4,10 @@
 # VSCode settings
 .vscode/
 
+# Package Manager locks
+package-lock.json
+yarn.lock
+
 # Logs
 logs
 *.log
