@@ -60,8 +60,12 @@ router.route ('/:project_id')
     // -- on success: adds ri.locals.project
   ])
   .get ([
-    respondWithError (501),
-    (ri, ro) => {},
+    (ri, ro, next) => {
+      // respond...
+      ro
+        .status (200)
+        .json (ri.locals.project)
+    },
   ])
   .put ([
     requireRequestHasBody (),
