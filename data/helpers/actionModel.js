@@ -32,14 +32,14 @@ function get(id) {
 function insert(action) {
     return db("actions")
         .insert(action)
-        .then(([id]) => this.get(id));
+        .then(([id]) => get(id));
 }
 
 function update(id, changes) {
     return db("actions")
         .where("id", id)
         .update(changes)
-        .then(count => (count > 0 ? this.get(id) : null));
+        .then(count => (count > 0 ? get(id) : null));
 }
 
 function remove(id) {
