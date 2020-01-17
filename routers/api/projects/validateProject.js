@@ -2,14 +2,22 @@
   validateProject
 ***********************************************************/
 
+const _ = require ('lodash/fp')
+
 const {
-  respondWithError,
   requireRequestConforms,
 } = require ('../../../middleware')
 
-const validateProject = () => (ri, ro, next) => {
-  next ()
-}
+const validateProject = () => requireRequestConforms (
+  {
+    'body' : {
+      'name' : _.isString,
+      'description' : _.isString,
+      'completed' : _.anyPass ([ _.isBoolean, _.isUndefined ])
+    }
+  },
+  ' -- { body : { name : string, description : string, completed : boolean | undefined } }',
+)
 
 /**************************************/
 
