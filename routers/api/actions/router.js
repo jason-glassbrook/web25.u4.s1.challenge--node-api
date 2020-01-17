@@ -41,7 +41,7 @@ router.route ('/')
 
 router.route ('/:action_id')
   .all ([
-    validateActionId (),
+    validateActionId (database.get),
   ])
   .get ([
     respondWithError (501),

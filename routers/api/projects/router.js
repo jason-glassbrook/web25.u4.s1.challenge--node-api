@@ -45,7 +45,7 @@ router.route ('/')
 
 router.route ('/:project_id')
   .all ([
-    validateProjectId (),
+    validateProjectId (database.get),
   ])
   .get ([
     respondWithError (501),
@@ -64,7 +64,7 @@ router.route ('/:project_id')
 
 router.route ('/:project_id/actions')
   .all ([
-    validateProjectId (),
+    validateProjectId (database.get),
   ])
   .get ([
     respondWithError (501),
@@ -72,6 +72,11 @@ router.route ('/:project_id/actions')
   ])
   .post ([
     requireRequestHasBody (),
+    // put `project_id` in action's `ri.body`
+    (ri, ro) => {
+      ri.body.project_id = ri.params.project_id
+      next ()
+    },
     validateAction (),
     respondWithError (501),
     (ri, ro) => {},
