@@ -38,8 +38,8 @@ const restOfError = {
 
 /*------------------------------------*/
 
-const validateProject = () => (
-  requireRequestConforms (shape, restOfErrorMessage, restOfError)
+const validateProject = (mode) => (
+  requireRequestConforms (shape, mode, restOfErrorMessage, restOfError)
 )
 
 /**************************************/

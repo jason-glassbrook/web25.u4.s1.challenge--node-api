@@ -84,7 +84,7 @@ router.route ('/:action_id')
   ])
   .put ([
     requireRequestHasBody (),
-    validateAction (),
+    validateAction ('partial'),
     (ri, ro, next) => {
       database['actions'].update (ri.params.action_id, ri.body)
         .then ((value) => {

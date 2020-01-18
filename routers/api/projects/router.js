@@ -86,7 +86,7 @@ router.route ('/:project_id')
   ])
   .put ([
     requireRequestHasBody (),
-    validateProject (),
+    validateProject ('partial'),
     (ri, ro, next) => {
       database['projects'].update (ri.params.project_id, ri.body)
         .then ((value) => {

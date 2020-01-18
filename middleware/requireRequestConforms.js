@@ -13,39 +13,32 @@ const respondWithError = require ('./respondWithError')
   MAIN
 ***************************************/
 
-const nestedConforms = (object, source) => (
-  _.cond ([
-    [ /* if */
-      _.isFunction, () => (
-        source (object)
-      )
-    ],
-    [ /* else if */
-      _.isObject, () => (
-        _.isMatchWith (nestedConforms) (source) (object)
-      )
-    ],
-    [ /* else */
-      _.T, () => (
-        _.isEqual (source) (object)
-      )
-    ]
-  ]) (source)
-
-  // if (_.isFunction (source)) {
-  //   return (source (object))
-  // }
-  // else if (_.isObject (source)) {
-  //   return _.isMatchWith (nestedConforms) (source) (object)
-  // }
-  // else {
-  //   return _.isEqual (source) (object)
-  // }
+const maybePartial = (isPartial) => (tests) => (
+  _.anyPass (
+    _.cond ([
+      [ _.identity, _.constant ([ _.isUndefined, ...tests ]) ],
+      [ _.T, _.constant (tests) ]
+    ]) (isPartial)
+  )
 )
 
-const requireRequestConforms = (shape, restOfErrorMessage = '', restOfError = {}) => (ri, ro, next) => {
+const nestedConforms = (mode = 'exact') => (object, source) => (
+  _.cond ([
+    [ _.isFunction, _.constant (
+      maybePartial (mode == 'partial') ([ source ])
+    )],
+    [ _.isObject, () => (
+      _.isMatchWith (nestedConforms (mode)) (source)
+    )],
+    [ _.T, () => (
+      maybePartial (mode == 'partial') ([ _.isEqual (source) ])
+    )]
+  ]) (source) (object)
+)
 
-  const requestConforms = _.isMatchWith (nestedConforms) (shape) (ri)
+const requireRequestConforms = (shape, mode, restOfErrorMessage = '', restOfError = {}) => (ri, ro, next) => {
+
+  const requestConforms = _.isMatchWith (nestedConforms (mode)) (shape) (ri)
 
   if (not (requestConforms)) {
     respondWithError (

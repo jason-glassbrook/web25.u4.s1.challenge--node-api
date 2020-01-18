@@ -40,8 +40,8 @@ const restOfError = {
 
 /*------------------------------------*/
 
-const validateAction = () => (
-  requireRequestConforms (shape, restOfErrorMessage, restOfError)
+const validateAction = (mode) => (
+  requireRequestConforms (shape, mode, restOfErrorMessage, restOfError)
 )
 
 /**************************************/
