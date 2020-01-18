@@ -38,15 +38,27 @@ Commit your code regularly and use descriptive messages. This helps both you (in
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your Team Lead.
 
--   [ ] Mention two parts of Express that you learned about this week.
+-   [x] Mention two parts of Express that you learned about this week.
 
--   [ ] Describe Middleware?
+    > This week we learned about using express to handle HTTP requests with `.get`, `.post`, `.put`, `.delete`, using `express.Router` to split our application into more-manageable pieces, and using "middleware" (which others have written or we have written) with `(App|Router).use` to handle specific tasks.
 
--   [ ] Describe a Resource?
+-   [x] What ise "middleware"?
 
--   [ ] What can the API return to help clients know if a request was successful?
+    > "Middleware" are functions that intercept a request, (probably) do something with it, and then either respond or pass the (possibly modified) request to the next handler (which could be more middleware, a router, a request handler, etc.). We can use a middleware function `middleware` on all paths by doing `(App|Router).use (middleware)` or on a single path `path` by doing `(App|Router).use (path, middleware)`. We can also use multiple `middleware` in a "stack" like `(App|Router).use (..., [ middleware[0] , ... , middleware[n] ])`, with or without `path`. Finally, we can use middleware or a middleware stack with the request handlers `.get`, `.post`, `.put`, `.delete`, etc.
 
--   [ ] How can we partition our application into sub-applications?
+-   [x] What is a "resource"?
+
+    > A "resource" is any identifiable piece or set of information that has an address (a "URI" or "Uniform Resource Identifier", for web resources). Examples of web resources include: a webpage (`example.com/hello-world.html`), a section of a webpage (`example.com/hello-world.html#javascript`), some thing in a server's database (`example.com/api/widgets/e7f09ab2`), etc.
+
+-   [x] What can the API return to help clients know if a request was successful?`
+
+    > An API can return an HTTP status code, such as 200 ("ok") or 404 ("resource not found") to help a client/user know the outcome of a request. For front-end programmers, an API can also return a response with a body indicating more specifically what went right or wrong.
+
+-   [x] How can we partition our application into sub-applications?
+
+    > We can use Express's `express.Router` and `(App|Router).route` to divide our application into smaller, more manageable sub-applications.
+    > `express.Router ()` creates a "router" (`router`) and using it as middleware on "path" `path` like `(App|Router).use (path, router)` will direct requests starting with `path` to use `router`. These can be nested.
+    > `(App|Router).route (path)` lets you "chain" `.use` and requests (like `.get`, `.post`, `.put`, `.delete`) onto that route to reduce repetition and the potential for mistakes.
 
 ## Minimum Viable Product
 
