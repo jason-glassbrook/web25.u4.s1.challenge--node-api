@@ -87,8 +87,20 @@ router.route ('/:project_id')
   .put ([
     requireRequestHasBody (),
     validateProject (),
-    respondWithError (501),
-    (ri, ro) => {},
+    (ri, ro, next) => {
+      database['projects'].update (ri.params.project_id, ri.body)
+        .then ((value) => {
+          // respond...
+          ro
+            .status (200)
+            .json (value)
+        })
+        .catch ((error) => {
+          // respond...
+          clog (error)
+          respondWithError (500) (ri, ro)
+        })
+    },
   ])
   .delete ([
     (ri, ro, next) => {
