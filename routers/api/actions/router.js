@@ -85,8 +85,20 @@ router.route ('/:action_id')
   .put ([
     requireRequestHasBody (),
     validateAction (),
-    respondWithError (501),
-    (ri, ro) => {},
+    (ri, ro, next) => {
+      database['actions'].update (ri.params.action_id, ri.body)
+        .then ((value) => {
+          // respond...
+          ro
+            .status (200)
+            .json (value)
+        })
+        .catch ((error) => {
+          // respond...
+          clog (error)
+          respondWithError (500) (ri, ro)
+        })
+    },
   ])
   .delete ([
     (ri, ro, next) => {
