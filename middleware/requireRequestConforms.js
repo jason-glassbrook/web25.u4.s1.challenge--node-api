@@ -29,13 +29,13 @@ const maybePartial = (isPartial) => (exactTests) => {
 
 /*----------------*/
 
-const nestedConforms = (mode = 'exact') => (
+const conformsThru = (mode = 'exact') => (
   (objVal, srcVal, key, obj, src) => {
 
     let act
-    if (_.isObject (srcVal)) {
+    if (_.isPlainObject (srcVal)) {
       // continue nesting
-      act = _.isMatchWith (nestedConforms (mode)) (srcVal)
+      act = _.isMatchWith (conformsThru (mode)) (srcVal)
     }
     else {
       // perform some test
@@ -61,7 +61,7 @@ const nestedConforms = (mode = 'exact') => (
 const requireRequestConforms = (shape, mode, restOfErrorMessage = '', restOfError = {}) => (
   (ri, ro, next) => {
 
-    const requestConforms = _.isMatchWith (nestedConforms (mode)) (shape) (ri)
+    const requestConforms = _.isMatchWith (conformsThru (mode)) (shape) (ri)
 
     if (not (requestConforms)) {
       respondWithError (
