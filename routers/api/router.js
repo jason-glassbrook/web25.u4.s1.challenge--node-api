@@ -18,8 +18,8 @@ router.use ([
 ])
 
 /// sub-routers ///
-server.use ('/actions', require ('./actions').router)
-server.use ('/projects', require ('./projects').router)
+router.use ('/actions', require ('./actions').router)
+router.use ('/projects', require ('./projects').router)
 
 /// requests ///
 router.route ('*')
