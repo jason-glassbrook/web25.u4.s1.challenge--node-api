@@ -2,15 +2,11 @@
   /middleware - index
 ***********************************************************/
 
-module.exports = Object.fromEntries (
-  [
-    'respondWithError',
-    'requireRequestHas',
-    'requireRequestHasBody',
-    'requireRequestConforms',
-    'requireRequestMatchesWith',
-    'requireRequestMatches',
-  ].map (
-    (name) => [ name , require (`./${name}`) ]
-  )
-)
+module.exports = {
+  respondWithError : require ('./respondWithError'),
+  requireRequestHas : require ('./requireRequestHas'),
+  requireRequestHasBody : require ('./requireRequestHasBody'),
+  requireRequestConforms : require ('./requireRequestConforms'),
+  requireRequestMatchesWith : require ('./requireRequestMatchesWith'),
+  requireRequestMatches : require ('./requireRequestMatches'),
+}
